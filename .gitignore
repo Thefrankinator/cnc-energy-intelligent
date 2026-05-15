@@ -1,0 +1,48 @@
+# ─── Data files — managed by DVC, not Git ────────────────────────────────────
+# Binary data formats
+**/*.parquet
+
+# Raw source dataset
+dataset/
+
+# Bronze layer raw CSVs (tracked via data/bronze.dvc)
+data/bronze/experiments/
+data/bronze/metadata/
+
+# Per-run quality reports (large, generated)
+data/silver/quality/quality_report_*.json
+
+# DVC local remote storage — never push to GitHub
+dvc-remote/
+
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+.env.*
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# ─── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ─── Jupyter ──────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ─── ML tracking (future) ─────────────────────────────────────────────────────
+mlruns/
+mlartifacts/

@@ -1,0 +1,25 @@
+stages:
+  clean:
+    cmd: python src/silver/transform.py
+    deps:
+      - src/silver/transform.py
+      - data/bronze/metadata/train.csv
+      - data/bronze/experiments/
+    outs:
+      - data/silver/metadata/train_silver.parquet
+      - data/silver/experiments/
+      - data/silver/quality/quality_summary.csv
+
+  featurize:
+    cmd: python src/gold/build.py
+    deps:
+      - src/gold/build.py
+      - data/silver/metadata/train_silver.parquet
+      - data/silver/experiments/
+    outs:
+      - data/gold/train_gold.parquet
+      - data/gold/validation_gold.parquet
+      - data/gold/test_gold.parquet
+      - data/gold/per_experiment/
+      - data/gold/diagnostics/defect_rows.parquet
+      - data/gold/feature_registry.json

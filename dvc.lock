@@ -1,0 +1,74 @@
+schema: '2.0'
+stages:
+  clean:
+    cmd: python src/silver/transform.py
+    deps:
+    - path: data/bronze/experiments/
+      hash: md5
+      md5: 903d3bf61aa6f5b2fe334f158a1b35e3.dir
+      size: 11172868
+      nfiles: 18
+    - path: data/bronze/metadata/train.csv
+      hash: md5
+      md5: 5616823a4f06c1420a4928a39126e937
+      size: 547
+    - path: src/silver/transform.py
+      hash: md5
+      md5: 2041f9747a58f3106106b79667c15516
+      size: 22389
+    outs:
+    - path: data/silver/experiments/
+      hash: md5
+      md5: 5ba88aafa0fa7b8f5465e07500f9bd77.dir
+      size: 2543010
+      nfiles: 18
+    - path: data/silver/metadata/train_silver.parquet
+      hash: md5
+      md5: 073c63f2bea894c853706395c667f989
+      size: 5519
+    - path: data/silver/quality/quality_summary.csv
+      hash: md5
+      md5: 0c4dae893fb99551409375e1cbaad91c
+      size: 286
+  featurize:
+    cmd: python src/gold/build.py
+    deps:
+    - path: data/silver/experiments/
+      hash: md5
+      md5: 5ba88aafa0fa7b8f5465e07500f9bd77.dir
+      size: 2543010
+      nfiles: 18
+    - path: data/silver/metadata/train_silver.parquet
+      hash: md5
+      md5: 073c63f2bea894c853706395c667f989
+      size: 5519
+    - path: src/gold/build.py
+      hash: md5
+      md5: bcb88bbfb1b535be997d438d58d9b0ce
+      size: 30892
+    outs:
+    - path: data/gold/diagnostics/defect_rows.parquet
+      hash: md5
+      md5: 0ccced02cae17007e23a6b8f2e2f51f4
+      size: 344470
+    - path: data/gold/feature_registry.json
+      hash: md5
+      md5: a8b19d67e848be61d9c61fb8cd3a125d
+      size: 33363
+    - path: data/gold/per_experiment/
+      hash: md5
+      md5: 44533a53c93cf4277e867f72623802de.dir
+      size: 7251912
+      nfiles: 18
+    - path: data/gold/test_gold.parquet
+      hash: md5
+      md5: 516dfd5bddac88586a9adf49d5345d97
+      size: 1216818
+    - path: data/gold/train_gold.parquet
+      hash: md5
+      md5: b0ab8b9aaa217b2d7afc6ec0b707e2e1
+      size: 3496618
+    - path: data/gold/validation_gold.parquet
+      hash: md5
+      md5: 60b5ecaa8487be69e25cd83e947aaa2d
+      size: 438098

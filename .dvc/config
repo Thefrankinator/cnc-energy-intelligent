@@ -1,0 +1,4 @@
+[core]
+    remote = team_remote
+['remote "team_remote"']
+    url = ../dvc-remote
