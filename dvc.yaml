@@ -1,9 +1,21 @@
 stages:
+  ingest:
+    cmd: python src/bronze/ingest.py
+    deps:
+      - src/bronze/ingest.py
+      - dataset/
+    outs:
+      - data/bronze/metadata/
+      - data/bronze/experiments/
+    metrics:
+      - data/bronze/ingestion_log.jsonl:
+          cache: false
+
   clean:
     cmd: python src/silver/transform.py
     deps:
       - src/silver/transform.py
-      - data/bronze/metadata/train.csv
+      - data/bronze/metadata/
       - data/bronze/experiments/
     outs:
       - data/silver/metadata/train_silver.parquet
