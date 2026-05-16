@@ -2,9 +2,6 @@
 # Binary data formats
 **/*.parquet
 
-# Raw source dataset
-dataset/
-
 # Bronze layer raw CSVs (tracked via data/bronze.dvc)
 data/bronze/experiments/
 data/bronze/metadata/
